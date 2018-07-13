@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript課題1</title>
+  <script>
+    (function(){
+    })();
+  </script>
+</head>
+<body>
+  <div>以下の問題に沿ってJavaScriptで実装しなさい。</div>
+  <div>■問題</div>
+  <div>・リセットボタン押下で、各入力項目を初期化する</div>
+  <div>・送信ボタン押下で、各入力項目で以下の入力チェックを行う</div>
+  <div>　・名前は15文字以内、英文字のみ。必須</div>
+  <div>　・年齢は0～120以内。任意</div>
+  <div>　・性別は必須</div>
+  <div>　・DM送信希望は任意</div>
+  <br />
+  <div>名前：<input type="text" id="name" size="20" maxlength="20" /></div>
+  <div>年齢：<input type="text" id="age" size="3" maxlength="3" /></div>
+  <p>
+    <input type="radio" name="sex" value="man" checked="checked">男性
+    <input type="radio" name="sex" value="woman">女性
+    <input type="radio" name="sex" value="otherwise">その他
+  </p>
+  <input type="checkbox" name="send" value="mailHope" checked>DM送信希望
+  <br />
+  <input type="button" value="送信" onclick="check()">
+  <input type="button" value="リセット" onclick="inputClear()">
+</body>
+</html>
