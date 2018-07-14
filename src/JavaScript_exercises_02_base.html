@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JavaScript課題2</title>
+<style type="text/css">
+  .errorMsg {
+    padding-left: 20px;
+    font-size: 12px;
+    color: red;
+  }
+</style>
+<script src="../lib/jquery.min.js"></script>
+<script>
+</script>
+</head>
+<body>
+  以下の問題に沿ってJavaScriptで実装しなさい。
+  <pre>
+  ■問題
+  ・リセットボタン押下で、各入力項目を初期化する
+  ・送信ボタン押下で、各入力項目で以下の入力チェックを行う
+    ・名前は15文字以内、英文字のみ。必須
+    ・年齢は0～120以内。数字のみ。任意
+    ・性別は必須
+    ・DM送信希望は任意
+  ・エラーメッセージは、各入力項目の右側に表示する
+  </pre>
+  <br />
+  <form method="post" action="JavaScript_exercises_02_transition.html">
+    <div>
+      名前：
+      <input type="text" id="named" size="20" maxlength="20" />
+    </div>
+    <div>
+      年齢：
+      <input type="text" id="age" size="3" maxlength="3" />
+    </div>
+    <p>
+      <label>
+        <input type="radio" name="sex" value="man" checked="checked" />
+        男性
+      </label>
+      <label>
+        <input type="radio" name="sex" value="woman" />
+        女性
+      </label>
+      <label>
+        <input type="radio" name="sex" value="otherwise" />
+        その他
+      </label>
+    </p>
+    <div>
+      <label>
+        <input type="checkbox" name="dmSend" value="mailHope" checked />
+        DM送信希望
+      </label>
+    </div>
+    <br />
+    <button type="button" id="send">送信</button>
+    <button type="button" id="reset">リセット</button>
+  </form>
+</body>
+</html>
