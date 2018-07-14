@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## 新人教育でのJavaScript教育用課題
 
 <pre>
 ・JavaScript
