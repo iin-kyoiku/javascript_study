@@ -1,4 +1,4 @@
-## 新人教育のJavaScript教育用*
+## 新人教育でのJavaScript教育用課題
 
 -狙い
 <pre>
