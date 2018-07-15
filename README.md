@@ -1,7 +1,8 @@
 ## 新人教育でのJavaScript教育用課題
 
+-狙い
 <pre>
-・JavaScript
-・JQuery
-・BootStrap
+Javascript
+JQuery
+BootStrap
 </pre>
