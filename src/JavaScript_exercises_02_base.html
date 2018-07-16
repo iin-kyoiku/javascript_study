@@ -5,16 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JavaScript課題2</title>
-    <link href="../lib/bootstrap-4.1.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="../lib/jquery.min.js"></script>
-    <script src="../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
+    <link href="../../lib/bootstrap-4.1.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../../lib/jquery.min.js"></script>
+    <script src="../../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
     </script>
     <style type="text/css">
+      * {
+        font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro',
+          'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック',
+          'MS PGothic', sans-serif;
+        letter-spacing: .08em;
+      }
       .errorMsg {
         padding-left: 10px;
         font-size: 12px;
         color: red;
+      }
+      .jumbotron {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .jumbotron div {
+        font-size: 11px;
       }
       input[type=text] {
         width: 250px;
@@ -46,39 +59,40 @@
     </nav>
     <div class="jumbotron">
       <p>以下の問題に沿ってJavaScript (JQuery) で実装しなさい。</p>
-      <pre>
-      ■問題
-      ・リセットボタン押下で、各入力項目を初期化する
-      ・送信ボタン押下で、各入力項目で以下の入力チェックを行う
-        ・名前は15文字以内、英文字のみ。必須
-        ・年齢は0～120以内。数字のみ。任意
-        ・性別は必須
-        ・DM送信希望は任意
-      ・エラーメッセージは、各入力項目の右側に表示する
-      </pre>
+      <div>
+        ■問題<br />
+        ・リセットボタン押下で、各入力項目を初期化する<br />
+        ・送信ボタン押下で、各入力項目で以下の入力チェックを行う<br />
+        　・名前は15文字以内、英文字のみ。必須<br />
+        　・年齢は0～120以内。数字のみ。任意<br />
+        　・性別は必須<br />
+        　・DM送信希望は任意<br />
+        ・エラーメッセージは、各入力項目の右側に表示する<br />
+      </div>
     </div>
-    <div>
+    <div class="container">
       <form method="post" action="JavaScript_exercises_02_transition.html">
         <div class="form-group">
           <label>名前</label>
-          <input type="text" id="named" size="20" maxlength="20" placeholder="Yamada Tarou" class="form-control">
+          <input type="text" id="named" size="20" maxlength="20" placeholder="例: Yamada Tarou" class="form-control">
         </div>
         <div class="form-group">
           <label>年齢</label>
-          <input type="text" id="age" size="3" maxlength="3" placeholder="20" class="form-control">
+          <input type="text" id="age" size="3" maxlength="3" placeholder="例: 20" class="form-control">
         </div>
         <br />
-        <div class="form-group">
-          <label><input type="radio" name="sex" value="man" checked="checked" />男性</label>
-          <label><input type="radio" name="sex" value="woman" />女性</label>
-          <label><input type="radio" name="sex" value="otherwise" />その他</label>
-        </div>
-        <div class="checkbox">
-          <label><input type="checkbox" name="dmSend" checked="checked" />DM送信希望</label>
+        <div>
+          <label class="radio-inline"><input type="radio" name="sex" value="man" checked="checked">男性</label>
+          <label class="radio-inline"><input type="radio" name="sex" value="woman">女性</label>
+          <label class="radio-inline"><input type="radio" name="sex" value="other">その他</label>
         </div>
         <br />
-        <button type="button" id="send">送信</button>
-        <button type="button" id="reset">リセット</button>
+        <div>
+          <label class="checkbox-inline"><input type="checkbox" value="dmSend" checked="checked">DM送信希望</label>
+        </div>
+        <br />
+        <button type="button" id="send" class="btn btn-primary">送信</button>
+        <button type="button" id="reset" class="btn btn-secondary">リセット</button>
       </form>
     </div>
   </body>
