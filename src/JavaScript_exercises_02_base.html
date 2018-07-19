@@ -13,7 +13,7 @@
     //送信ボタンの機能
     $(document).ready(function(){
         $('#send').click(function(){
-            $('span.error').remove();
+            $('span.errorMsg').remove();
 
             if($('#named').val() == ''){
                 $('#named').after("<span class='errorMsg'>※必須項目です</span>")
@@ -37,7 +37,7 @@
     //リセットボタンの機能
     $(document).ready(function(){
         $('#reset').click(function(){
-            $('span.error').remove();
+            $('span.errorMsg').remove();
             $("#named").val('');
             $("#age").val('');
             $("input[type=radio][name=sex][value=man]").prop("checked",true);
