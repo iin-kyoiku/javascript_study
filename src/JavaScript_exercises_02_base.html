@@ -16,19 +16,19 @@
             $('span.error').remove();
 
             if($('#named').val() == ''){
-                $('#named').after("<span class='error'>必須項目です</span>")
+                $('#named').after("<span class='errorMsg'>必須項目です</span>")
                 return false;
                 }
             if(!($('#named').val().match(/^[A-Za-z]/))){
-                $('#named').after("<span class='error'>名前は英文字での入力をお願いします</span>")
+                $('#named').after("<span class='errorMsg'>名前は英文字での入力をお願いします</span>")
                 return false;
                 }
             if($('#named').val().length > 15){
-                $("#named").after("<span class='error'>名前は15文字以内での入力をお願いします</span>")
+                $("#named").after("<span class='errorMsg'>名前は15文字以内での入力をお願いします</span>")
                 return false;
                 }
             if($('#age').val() > 120 || $("#age").val() < 0){
-                $("#age").after("<span class='error'>年齢は0～120歳以内での入力をお願いします</span>")
+                $("#age").after("<span class='errorMsg'>年齢は0～120歳以内での入力をお願いします</span>")
                 return false;
                 }
             });
