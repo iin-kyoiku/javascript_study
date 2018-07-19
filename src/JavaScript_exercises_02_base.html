@@ -9,6 +9,28 @@
     <script src="../lib/jquery.min.js"></script>
     <script src="../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
+    $(document).ready(function(){
+        $('#send').click(function(){
+            $('span.error').remove();
+
+            if($('#named').val() == ''){
+                $('#named').after("<span class='error'>必須項目です</span>")
+                return false;
+                }
+            if(!($('#named').val().match(/^[A-Za-z]/))){
+                $('#named').after("<span class='error'>名前は英文字での入力をお願いします</span>")
+                return false;
+                }
+            if($('#named').val().length > 15){
+                $("#named").after("<span class='error'>名前は15文字以内での入力をお願いします</span>")
+                return false;
+                }
+            if($('#age').val() > 120 || $("#age").val() < 0){
+                $("#age").after(" <span class='error'>年齢は0～120歳以内での入力をお願いします</apan>")
+                return false;
+                }
+            });
+        });
     </script>
     <style type="text/css">
       * {
