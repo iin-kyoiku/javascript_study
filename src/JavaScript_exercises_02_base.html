@@ -21,7 +21,7 @@
                 $('#named').after("<span class='errorMsg'>※必須項目です</span>")
                 flag = false;
                 }
-            if(!($('#named') == '')){
+            if(!($('#named').val() == '')){
                 if(!($('#named').val().match(/^[A-Za-z]/))){
                     $('#named').after("<span class='errorMsg'>※名前は英文字での入力をお願いします</span>")
                     flag = false;
