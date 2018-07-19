@@ -9,6 +9,97 @@
     <script src="../../lib/jquery.min.js"></script>
     <script src="../../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
+      var checkRequired = function( val ){
+        return ! val ? '入力されていません' : null;
+      }
+      var checkLength = function( val, length ){
+        return ( val && val.length > length ) ? length + '文字を超えています' : null;
+      }
+      var checkAlphabet = function( val ){
+        return ( val && ! /^[a-zA-Z]*$/.test( val ) ) ? '英文字で入力してください' : null;
+      }
+      var checkNumeric = function( val ){
+        return ( val && ! /^[0-9]*$/.test( val ) ) ? '数字で入力してください' : null;
+      }
+      var checkNumericRange = function( val, min, max ){
+        return ( val && /^[0-9]*$/.test( val ) && ( Number(val) < min || max < Number(val) ) )
+         ? min + '以上' + max + '以下の範囲で入力してください' : null;
+      }
+
+      var inputCheckFacade = function( args ){
+        var errorMsg = [];
+        var targetVal = args.targetValue;
+
+        $.each( args.functions, function( idx, val ){
+          switch ( val.name ){
+            case 'checkLength':
+              errorMsg.push( val.func.call( null, targetVal, val.strLength ) );
+              break;
+            case 'checkNumericRange':
+              errorMsg.push( val.func.call( null, targetVal, val.min, val.max ) );
+              break;
+            default:
+              errorMsg.push( val.func.call( null, targetVal ) );
+              break;
+          }
+        });
+        return errorMsg.filter( Boolean );
+      }
+
+      $( function(){
+        $('#send').on( 'click', function(){
+          $('.errorMsg').remove();
+          var MSG_SEPARATOR = ' , ';
+          var sendOkFlg = true;
+
+          var errorMsg = inputCheckFacade(
+            {
+               "targetValue":$('#named').val(),
+               "functions":[
+                  { "name":"checkRequired", "func":checkRequired },
+                  { "name":"checkLength", "func":checkLength, "strLength":15 },
+                  { "name":"checkAlphabet", "func":checkAlphabet }
+               ]
+            });
+          if ( errorMsg.length ){
+            $('#named').after( '<span class="errorMsg">' + errorMsg.join( MSG_SEPARATOR ) + '</span>' );
+            sendOkFlg = false;
+          }
+
+          var errorMsg = inputCheckFacade(
+            { "targetValue":$('#age').val(),
+            	"functions":[
+                  { "name":"checkNumeric", "func":checkNumeric },
+                  { "name":"checkNumericRange", "func":checkNumericRange, "min":0, "max":120 }
+               ]
+            });
+          if ( errorMsg.length ){
+            $('#age').after( '<span class="errorMsg">' + errorMsg.join( MSG_SEPARATOR ) + '</span>' );
+            sendOkFlg = false;
+          }
+
+          var errorMsg = inputCheckFacade(
+            {
+               "targetValue":$('input[name=sex]:checked').val(),
+               "functions":[
+                  { "name":"checkRequired", "func":checkRequired }
+               ]
+            });
+          if ( errorMsg.length ){
+            $('input[name=sex]').parent().parent()
+              .append( '<span class="errorMsg">' + errorMsg.join( MSG_SEPARATOR ) + '</span>' );
+            sendOkFlg = false;
+          }
+
+          return sendOkFlg;
+        });
+
+        $('#reset').on( 'click', function(){
+          $('#named, #age').val( '' );
+          $('input[type=radio][name=sex][value=man], input[value=dmSend]').prop( 'checked', true );
+          $('.errorMsg').remove();
+        });
+      });
     </script>
     <style type="text/css">
       * {
