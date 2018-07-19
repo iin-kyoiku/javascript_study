@@ -21,13 +21,15 @@
                 $('#named').after("<span class='errorMsg'>※必須項目です</span>")
                 flag = false;
                 }
-            if(!($('#named').val().match(/^[A-Za-z]/))){
-                $('#named').after("<span class='errorMsg'>※名前は英文字での入力をお願いします</span>")
-                flag = false;
-                }
-            if($('#named').val().length > 15){
-                $("#named").after("<span class='errorMsg'>※名前は15文字以内での入力をお願いします</span>")
-                flag = false;
+            if(!($('#named') == '')){
+                if(!($('#named').val().match(/^[A-Za-z]/))){
+                    $('#named').after("<span class='errorMsg'>※名前は英文字での入力をお願いします</span>")
+                    flag = false;
+                    }
+                if($('#named').val().length > 15){
+                    $("#named").after("<span class='errorMsg'>※名前は15文字以内での入力をお願いします</span>")
+                    flag = false;
+                    }
                 }
             if(!($('#age').val() == '')){
                 if($('#age').val() > 120 || $("#age").val() < 0){
