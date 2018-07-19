@@ -9,6 +9,54 @@
     <script src="../lib/jquery.min.js"></script>
     <script src="../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
+
+    $(document).ready(function(){
+        //送信ボタンの機能
+        $('#send').click(function(){
+            $('span.errorMsg').remove();
+
+            var flag = true;
+
+            if($('#named').val() == ''){
+                $('#named').after("<span class='errorMsg'>※必須項目です</span>")
+                flag = false;
+                }
+            if(!($('#named').val() == '')){
+                if(!($('#named').val().match(/^[A-Za-z]/))){
+                    $('#named').after("<span class='errorMsg'>※名前は英文字での入力をお願いします</span>")
+                    flag = false;
+                    }
+                if($('#named').val().length > 15){
+                    $("#named").after("<span class='errorMsg'>※名前は15文字以内での入力をお願いします</span>")
+                    flag = false;
+                    }
+                }
+            if(!($('#age').val() == '')){
+                if($('#age').val() > 120 || $('#age').val() < 0){
+                    $("#age").after("<span class='errorMsg'>※年齢は0～120歳以内での入力をお願いします</span>")
+                    flag = false;
+                    }
+                if(!($('#age').val().match(/^[0-9]/))){
+                    $('#age').after("<span class='errorMsg'>数値のみでの入力をお願いします</span>")
+                    flag = false;
+                    }
+                }
+            if(!($('[name=sex]:checked').prop('checked'))){
+                $('.radio-inline').last().after("<span class='errorMsg'>必須項目です</span>")
+                flag = false;
+                }
+                return flag;
+            });
+
+        //リセットボタンの機能
+        $('#reset').click(function(){
+            $('span.errorMsg').remove();
+            $("#named").val('');
+            $("#age").val('');
+            $("input[type=radio][name=sex][value=man]").prop("checked",true);
+            $('input:checkbox').prop("checked",true);
+            });
+        });
     </script>
     <style type="text/css">
       * {
@@ -30,14 +78,15 @@
         font-size: 11px;
       }
       input[type=text] {
-        width: 250px;
+        width: 280px;
       }
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">JavaScript課題2</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
@@ -72,7 +121,7 @@
       <form method="post" action="JavaScript_exercises_02_transition.html">
         <div class="form-group">
           <label>名前</label>
-          <input type="text" id="named" size="20" maxlength="20" placeholder="例) Yamada Tarou" class="form-control">
+          <input type="text" id="named" size="20" maxlength="20" placeholder="例) Yamada Tarou" class="form-control" />
         </div>
         <div class="form-group">
           <label>年齢</label>
@@ -80,18 +129,20 @@
         </div>
         <br />
         <div>
-          <label class="radio-inline"><input type="radio" name="sex" value="man" checked="checked">男性</label>
-          <label class="radio-inline"><input type="radio" name="sex" value="woman">女性</label>
-          <label class="radio-inline"><input type="radio" name="sex" value="other">その他</label>
+          <label class="radio-inline"><input type="radio" name="sex" value="man" checked="checked" />男性</label>
+          <label class="radio-inline"><input type="radio" name="sex" value="woman" />女性</label>
+          <label class="radio-inline"><input type="radio" name="sex" value="other" />その他</label>
         </div>
         <br />
         <div>
-          <label class="checkbox-inline"><input type="checkbox" value="dmSend" checked="checked">DM送信希望</label>
+          <label class="checkbox-inline"><input type="checkbox" value="dmSend" checked="checked" />DM送信希望</label>
         </div>
         <br />
-        <button type="button" id="send" class="btn btn-primary">送信</button>
+        <button type="submit" id="send" class="btn btn-primary">送信</button>
         <button type="button" id="reset" class="btn btn-secondary">リセット</button>
       </form>
+      <br />
+      <br />
     </div>
   </body>
 </html>

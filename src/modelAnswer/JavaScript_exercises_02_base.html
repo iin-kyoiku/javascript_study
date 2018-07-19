@@ -9,6 +9,97 @@
     <script src="../../lib/jquery.min.js"></script>
     <script src="../../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
+      var checkRequired = function( val ){
+        return ! val ? '入力されていません' : null;
+      }
+      var checkLength = function( val, length ){
+        return ( val && val.length > length ) ? length + '文字を超えています' : null;
+      }
+      var checkAlphabet = function( val ){
+        return ( val && ! /^[a-zA-Z]*$/.test( val ) ) ? '英文字で入力してください' : null;
+      }
+      var checkNumeric = function( val ){
+        return ( val && ! /^[0-9]*$/.test( val ) ) ? '数字で入力してください' : null;
+      }
+      var checkNumericRange = function( val, min, max ){
+        return ( val && /^[0-9]*$/.test( val ) && ( Number(val) < min || max < Number(val) ) )
+         ? min + '以上' + max + '以下の範囲で入力してください' : null;
+      }
+
+      var inputCheckFacade = function( args ){
+        var errorMsg = [];
+        var targetVal = args.targetValue;
+
+        $.each( args.functions, function( idx, val ){
+          switch ( val.name ){
+            case 'checkLength':
+              errorMsg.push( val.func.call( null, targetVal, val.strLength ) );
+              break;
+            case 'checkNumericRange':
+              errorMsg.push( val.func.call( null, targetVal, val.min, val.max ) );
+              break;
+            default:
+              errorMsg.push( val.func.call( null, targetVal ) );
+              break;
+          }
+        });
+        return errorMsg.filter( Boolean );
+      }
+
+      $( function(){
+        $('#send').on( 'click', function(){
+          $('.errorMsg').remove();
+          var MSG_SEPARATOR = ' , ';
+          var sendOkFlg = true;
+
+          var errorMsg = inputCheckFacade(
+            {
+               "targetValue":$('#named').val(),
+               "functions":[
+                  { "name":"checkRequired", "func":checkRequired },
+                  { "name":"checkLength", "func":checkLength, "strLength":15 },
+                  { "name":"checkAlphabet", "func":checkAlphabet }
+               ]
+            });
+          if ( errorMsg.length ){
+            $('#named').after( '<span class="errorMsg">' + errorMsg.join( MSG_SEPARATOR ) + '</span>' );
+            sendOkFlg = false;
+          }
+
+          var errorMsg = inputCheckFacade(
+            { "targetValue":$('#age').val(),
+            	"functions":[
+                  { "name":"checkNumeric", "func":checkNumeric },
+                  { "name":"checkNumericRange", "func":checkNumericRange, "min":0, "max":120 }
+               ]
+            });
+          if ( errorMsg.length ){
+            $('#age').after( '<span class="errorMsg">' + errorMsg.join( MSG_SEPARATOR ) + '</span>' );
+            sendOkFlg = false;
+          }
+
+          var errorMsg = inputCheckFacade(
+            {
+               "targetValue":$('input[name=sex]:checked').val(),
+               "functions":[
+                  { "name":"checkRequired", "func":checkRequired }
+               ]
+            });
+          if ( errorMsg.length ){
+            $('input[name=sex]').parent().parent()
+              .append( '<span class="errorMsg">' + errorMsg.join( MSG_SEPARATOR ) + '</span>' );
+            sendOkFlg = false;
+          }
+
+          return sendOkFlg;
+        });
+
+        $('#reset').on( 'click', function(){
+          $('#named, #age').val( '' );
+          $('input[type=radio][name=sex][value=man], input[value=dmSend]').prop( 'checked', true );
+          $('.errorMsg').remove();
+        });
+      });
     </script>
     <style type="text/css">
       * {
@@ -30,14 +121,15 @@
         font-size: 11px;
       }
       input[type=text] {
-        width: 250px;
+        width: 280px;
       }
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">JavaScript課題2</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
@@ -59,41 +151,41 @@
     </nav>
     <div class="jumbotron">
       <p>以下の問題に沿ってJavaScript (JQuery) で実装しなさい。</p>
-      <div>
-        ■問題<br />
-        ・リセットボタン押下で、各入力項目を初期化する<br />
-        ・送信ボタン押下で、各入力項目で以下の入力チェックを行う<br />
-        　・名前は15文字以内、英文字のみ。必須<br />
-        　・年齢は0～120以内。数字のみ。任意<br />
-        　・性別は必須<br />
-        　・DM送信希望は任意<br />
-        ・エラーメッセージは、各入力項目の右側に表示する<br />
-      </div>
+      <div>■問題</div>
+      <div>・リセットボタン押下で、各入力項目を初期化する</div>
+      <div>・送信ボタン押下で、各入力項目で以下の入力チェックを行う</div>
+      <div>　・名前は15文字以内、英文字のみ。必須</div>
+      <div>　・年齢は0～120以内。数字のみ。任意</div>
+      <div>　・性別は必須</div>
+      <div>　・DM送信希望は任意</div>
+      <div>・エラーメッセージは、各入力項目の右側に表示する</div>
     </div>
     <div class="container">
       <form method="post" action="JavaScript_exercises_02_transition.html">
         <div class="form-group">
           <label>名前</label>
-          <input type="text" id="named" size="20" maxlength="20" placeholder="例: Yamada Tarou" class="form-control">
+          <input type="text" id="named" size="20" maxlength="20" placeholder="例) Yamada Tarou" class="form-control" />
         </div>
         <div class="form-group">
           <label>年齢</label>
-          <input type="text" id="age" size="3" maxlength="3" placeholder="例: 20" class="form-control">
+          <input type="text" id="age" size="3" maxlength="3" placeholder="例) 20" class="form-control">
         </div>
         <br />
         <div>
-          <label class="radio-inline"><input type="radio" name="sex" value="man" checked="checked">男性</label>
-          <label class="radio-inline"><input type="radio" name="sex" value="woman">女性</label>
-          <label class="radio-inline"><input type="radio" name="sex" value="other">その他</label>
+          <label class="radio-inline"><input type="radio" name="sex" value="man" checked="checked" />男性</label>
+          <label class="radio-inline"><input type="radio" name="sex" value="woman" />女性</label>
+          <label class="radio-inline"><input type="radio" name="sex" value="other" />その他</label>
         </div>
         <br />
         <div>
-          <label class="checkbox-inline"><input type="checkbox" value="dmSend" checked="checked">DM送信希望</label>
+          <label class="checkbox-inline"><input type="checkbox" value="dmSend" checked="checked" />DM送信希望</label>
         </div>
         <br />
-        <button type="button" id="send" class="btn btn-primary">送信</button>
+        <button type="submit" id="send" class="btn btn-primary">送信</button>
         <button type="button" id="reset" class="btn btn-secondary">リセット</button>
       </form>
+      <br />
+      <br />
     </div>
   </body>
 </html>
