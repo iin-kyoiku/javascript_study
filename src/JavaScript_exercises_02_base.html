@@ -9,6 +9,54 @@
     <script src="../lib/jquery.min.js"></script>
     <script src="../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
+
+    $(document).ready(function(){
+        //送信ボタンの機能
+        $('#send').click(function(){
+            $('span.errorMsg').remove();
+
+            var flag = true;
+
+            if($('#named').val() == ''){
+                $('#named').after("<span class='errorMsg'>※必須項目です</span>")
+                flag = false;
+                }
+            if(!($('#named').val() == '')){
+                if(!($('#named').val().match(/^[A-Za-z]/))){
+                    $('#named').after("<span class='errorMsg'>※名前は英文字での入力をお願いします</span>")
+                    flag = false;
+                    }
+                if($('#named').val().length > 15){
+                    $("#named").after("<span class='errorMsg'>※名前は15文字以内での入力をお願いします</span>")
+                    flag = false;
+                    }
+                }
+            if(!($('#age').val() == '')){
+                if($('#age').val() > 120 || $('#age').val() < 0){
+                    $("#age").after("<span class='errorMsg'>※年齢は0～120歳以内での入力をお願いします</span>")
+                    flag = false;
+                    }
+                if(!($('#age').val().match(/^[0-9]/))){
+                    $('#age').after("<span class='errorMsg'>数値のみでの入力をお願いします</span>")
+                    flag = false;
+                    }
+                }
+            if(!($('[name=sex]:checked').prop('checked'))){
+                $('.radio-inline').last().after("<span class='errorMsg'>必須項目です</span>")
+                flag = false;
+                }
+                return flag;
+            });
+
+        //リセットボタンの機能
+        $('#reset').click(function(){
+            $('span.errorMsg').remove();
+            $("#named").val('');
+            $("#age").val('');
+            $("input[type=radio][name=sex][value=man]").prop("checked",true);
+            $('input:checkbox').prop("checked",true);
+            });
+        });
     </script>
     <style type="text/css">
       * {
