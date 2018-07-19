@@ -10,8 +10,8 @@
     <script src="../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
 
-    //送信ボタンの機能
     $(document).ready(function(){
+        //送信ボタンの機能
         $('#send').click(function(){
             $('span.errorMsg').remove();
 
@@ -43,10 +43,8 @@
                 return flag;
                 }
             });
-        });
 
-    //リセットボタンの機能
-    $(document).ready(function(){
+        //リセットボタンの機能
         $('#reset').click(function(){
             $('span.errorMsg').remove();
             $("#named").val('');
