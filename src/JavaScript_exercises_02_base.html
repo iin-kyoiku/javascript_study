@@ -9,6 +9,8 @@
     <script src="../lib/jquery.min.js"></script>
     <script src="../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
+
+    //送信ボタンの機能
     $(document).ready(function(){
         $('#send').click(function(){
             $('span.error').remove();
@@ -29,6 +31,17 @@
                 $("#age").after(" <span class='error'>年齢は0～120歳以内での入力をお願いします</apan>")
                 return false;
                 }
+            });
+        });
+
+    //リセットボタンの機能
+    $(document).ready(function(){
+        $('#reset').click(function(){
+            $('span.error').remove();
+            $("#named").val('');
+            $("#age").val('');
+            $("input[type=radio][name=sex][value=man]").prop("checked",true);
+            $('input:checkbox').prop("checked",true);
             });
         });
     </script>
