@@ -36,7 +36,7 @@
                     $("#age").after("<span class='errorMsg'>※年齢は0～120歳以内での入力をお願いします</span>")
                     flag = false;
                     }
-                if(!($('#age').val().match(/^[0-9]/))){
+                if(!($('#age').val().match(/^[0-9]*$/))){
                     $('#age').after("<span class='errorMsg'>数値のみでの入力をお願いします</span>")
                     flag = false;
                     }
