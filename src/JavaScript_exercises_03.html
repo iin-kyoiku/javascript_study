@@ -9,6 +9,224 @@
     <script src="../lib/jquery.min.js"></script>
     <script src="../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
+    $(document).ready(function(){
+        alert("jQueryファイルの読み込み完了です。");
+        $("#button").click(function(){
+            var chg1=
+                "<tr>"+
+                "<td><input type='text' id='A0' value='1'></td>"+
+                "<td><input type='text' id='A1' value='4'></td>"+
+                "<td><input type='text' id='A2' value='7'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A9' value='2'></td>"+
+                "<td><input type='text' id='A10' value='5'> </td>"+
+                "<td><input type='text' id='A11' value='8'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A18' value='3'> </td>"+
+                "<td><input type='text' id='A19' value='6'> </td>"+
+                "<td><input type='text' id='A20' value='9'> </td>"+
+                "</tr>";
+            var chg2=
+                "<tr>"+
+                "<td><input type='text' id='A3' value='2'></td>"+
+                "<td><input type='text' id='A4' value='5'></td>"+
+                "<td><input type='text' id='A5' value='8'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A12' value='3'></td>"+
+                "<td><input type='text' id='A13' value='6'> </td>"+
+                "<td><input type='text' id='A14' value='9'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A21' value='4'> </td>"+
+                "<td><input type='text' id='A22' value='7'> </td>"+
+                "<td><input type='text' id='A23' value='1'> </td>"+
+                "</tr>";
+            var chg3=
+                "<tr>"+
+                "<td><input type='text' id='A6' value='3'></td>"+
+                "<td><input type='text' id='A7' value='6'></td>"+
+                "<td><input type='text' id='A8' value='9'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A15' value='4'></td>"+
+                "<td><input type='text' id='A16' value='7'> </td>"+
+                "<td><input type='text' id='A17' value='1'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A24' value='5'> </td>"+
+                "<td><input type='text' id='A25' value='8'> </td>"+
+                "<td><input type='text' id='A26' value='2'> </td>"+
+                "</tr>";
+            var chg4=
+                "<tr>"+
+                "<td><input type='text' id='A27' value='4'></td>"+
+                "<td><input type='text' id='A28' value='7'></td>"+
+                "<td><input type='text' id='A29' value='1'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A36' value='5'></td>"+
+                "<td><input type='text' id='A37' value='8'> </td>"+
+                "<td><input type='text' id='A38' value='2'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A45' value='6'> </td>"+
+                "<td><input type='text' id='A46' value='9'> </td>"+
+                "<td><input type='text' id='A47' value='3'> </td>"+
+                "</tr>";
+            var chg5=
+                "<tr>"+
+                "<td><input type='text' id='A30' value='5'></td>"+
+                "<td><input type='text' id='A31' value='8'></td>"+
+                "<td><input type='text' id='A32' value='2'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A39' value='6'></td>"+
+                "<td><input type='text' id='A40' value='9'> </td>"+
+                "<td><input type='text' id='A41' value='3'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A48' value='7'> </td>"+
+                "<td><input type='text' id='A49' value='1'> </td>"+
+                "<td><input type='text' id='A50' value='4'> </td>"+
+                "</tr>";
+            var chg6=
+                "<tr>"+
+                "<td><input type='text' id='A33' value='6'></td>"+
+                "<td><input type='text' id='A34' value='9'></td>"+
+                "<td><input type='text' id='A35' value='3'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A42' value='7'></td>"+
+                "<td><input type='text' id='A43' value='1'> </td>"+
+                "<td><input type='text' id='A44' value='4'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A51' value='8'> </td>"+
+                "<td><input type='text' id='A52' value='2'> </td>"+
+                "<td><input type='text' id='A53' value='5'> </td>"+
+                "</tr>";
+            var chg7=
+                "<tr>"+
+                "<td><input type='text' id='A54' value='7'></td>"+
+                "<td><input type='text' id='A55' value='1'></td>"+
+                "<td><input type='text' id='A56' value='4'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A63' value='8'></td>"+
+                "<td><input type='text' id='A64' value='2'> </td>"+
+                "<td><input type='text' id='A65' value='5'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A72' value='9'> </td>"+
+                "<td><input type='text' id='A73' value='3'> </td>"+
+                "<td><input type='text' id='A74' value='6'> </td>"+
+                "</tr>";
+            var chg8=
+                "<tr>"+
+                "<td><input type='text' id='A57' value='8'></td>"+
+                "<td><input type='text' id='A58' value='2'></td>"+
+                "<td><input type='text' id='A59' value='5'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A66' value='9'></td>"+
+                "<td><input type='text' id='A67' value='3'> </td>"+
+                "<td><input type='text' id='A68' value='6'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A75' value='1'> </td>"+
+                "<td><input type='text' id='A76' value='4'> </td>"+
+                "<td><input type='text' id='A77' value='7'> </td>"+
+                "</tr>";
+            var chg9=
+                "<tr>"+
+                "<td><input type='text' id='A60' value='9'></td>"+
+                "<td><input type='text' id='A61' value='3'></td>"+
+                "<td><input type='text' id='A62' value='6'></td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A69' value='1'></td>"+
+                "<td><input type='text' id='A70' value='4'> </td>"+
+                "<td><input type='text' id='A71' value='7'> </td>"+
+                "</tr>"+
+                "<tr>"+
+                "<td><input type='text' id='A78' value='2'> </td>"+
+                "<td><input type='text' id='A79' value='5'> </td>"+
+                "<td><input type='text' id='A80' value='8'> </td>"+
+                "</tr>";
+                var random = Math.floor( Math.random() * 5 );
+                if(random == 0){
+                    for(var i=1; i<10; i++){
+                        $("#box"+i).html(eval("chg"+i));
+                        }
+                }else if(random == 1){
+                    for(var i=4; i<7; i++){
+                        $("#box"+(i-3)).html(eval("chg"+i));
+                        }
+                    for(var i=1; i<4; i++){
+                        $("#box"+(i+3)).html(eval("chg"+i));
+                        }
+                    for(var i=7; i<10; i++){
+                        $("#box"+i).html(eval("chg"+i));
+                        }
+                }else if(random == 2){
+                    for(var i=4; i<7; i++){
+                        $("#box"+(i-3)).html(eval("chg"+i));
+                        }
+                    for(var i=7; i<10; i++){
+                        $("#box"+(i-3)).html(eval("chg"+i));
+                        }
+                    for(var i=1; i<4; i++){
+                        $("#box"+(i+6)).html(eval("chg"+i));
+                        }
+                }else if(random == 3){
+                    for(var i=7; i<10; i++){
+                        $("#box"+(i-6)).html(eval("chg"+i));
+                        }
+                    for(var i=1; i<4; i++){
+                        $("#box"+(i+3)).html(eval("chg"+i));
+                        }
+                    for(var i=4; i<7; i++){
+                        $("#box"+(i+3)).html(eval("chg"+i));
+                        }
+                }else if(random == 4){
+                    for(var i=7; i<10; i++){
+                        $("#box"+(i-6)).html(eval("chg"+i));
+                        }
+                    for(var i=4; i<7; i++){
+                        $("#box"+(i)).html(eval("chg"+i));
+                        }
+                    for(var i=1; i<4; i++){
+                        $("#box"+(i+6)).html(eval("chg"+i));
+                        }
+                    }
+
+                var arr = [1,2,3,4,5,6,7,8,9,10,
+                    11,12,13,14,15,16,17,18,19,20,
+                    21,22,23,24,25,26,27,28,29,30,
+                    31,32,33,34,35,36,37,38,39,40,
+                    41,42,43,44,45,46,47,48,49,50,
+                    51,52,53,54,55,56,57,58,59,60,
+                    61,62,63,64,65,66,67,68,69,70,
+                    71,72,73,74,75,76,77,78,79,80];
+
+                var a = arr.length;
+
+                //シャッフルアルゴリズム
+                while (a) {
+                    var j = Math.floor( Math.random() * a );
+                    var t = arr[--a];
+                    arr[a] = arr[j];
+                    arr[j] = t;
+                    }
+
+                for(var i=0; i<40; i++){
+                    $("#A"+arr[i]).val("");
+                    }
+                });
+        });
     </script>
     <style type="text/css">
       * {
