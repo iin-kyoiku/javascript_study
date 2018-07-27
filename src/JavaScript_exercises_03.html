@@ -10,6 +10,7 @@
     <script src="../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
     <script>
     $(document).ready(function(){
+        var check = [];
         $("#button").click(function(){
             var chg1=
                 "<tr>"+
@@ -213,6 +214,9 @@
 
                 var a = arr.length;
 
+                for(var i=0; i<81; i++){
+                    check.push($("#A"+arr[i]).val());}
+
                 while (a) {
                     var j = Math.floor( Math.random() * a );
                     var t = arr[--a];
@@ -228,7 +232,28 @@
                     $("#A"+arr[i]).val("").css("color","#000");
                     }
                 });
+
+        $("#check").click(function(){
+            var num = 0;
+            alert("答え合わせをします");
+
+            for(var i=0; i<81; i++){
+                if($("#A"+i).val()==""){
+                    num = 100;
+                }else if(!($("#A"+i).val()==check[i])){
+                    num += 1;
+                    }
+                }
+            if(num > 0 && num < 90){
+                alert(num+"箇所まだ間違っております");
+            }else if(num > 91){
+                alert("空白がまだあります");
+            }else{
+                alert("正解です");
+            }
+
         });
+    });
     </script>
     <style type="text/css">
       * {
@@ -257,6 +282,10 @@
         width: 70px;
         height: 30px;
         margin: 15px 15px 0px 15px;;
+      }
+      #check{
+        width:70px;
+        height:30px;
       }
     </style>
   </head>
@@ -475,6 +504,7 @@
       </table>
       <p>
           <input id="button" type="button" value="問題">
+          <input id="check" type="button" value="チェック">
           <input id="button" type="reset" value="解答">
       </p>
       </form>
