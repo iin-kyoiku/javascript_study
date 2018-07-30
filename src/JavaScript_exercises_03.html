@@ -218,9 +218,9 @@
 
                 var element = arr.length;
 
-                for(var i=0; i<81; i++){
-                    check.push($("#A"+arr[i]).val());
-                }
+                arr.forEach(function(element){
+                    check.push($("#A"+element).val());
+                });
 
                 while (element) {
                     var changeElement = Math.floor( Math.random() * element );
