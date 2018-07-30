@@ -161,48 +161,48 @@
                 chg7,chg8,chg9];
             var random = Math.floor( Math.random() * 5 );
                 if(random == 0){
-                    for(var i=0; i<9; i++){
-                        $("#box"+i).html(group[i]);
+                    for(var all=0; all<9; all++){
+                        $("#box"+all).html(group[all]);
                         }
                 }else if(random == 1){
-                    for(var i=3; i<6; i++){
-                        $("#box"+(i-3)).html(group[i]);
+                    for(var fs=3; fs<6; fs++){
+                        $("#box"+(fs-3)).html(group[fs]);
                         }
-                    for(var i=0; i<3; i++){
-                        $("#box"+(i+3)).html(group[i]);
+                    for(var ss=0; ss<3; ss++){
+                        $("#box"+(ss+3)).html(group[ss]);
                         }
-                    for(var i=6; i<9; i++){
+                    for(var ts=6; ts<9; ts++){
                         $("#box"+i).html(group[i]);
                         }
                 }else if(random == 2){
-                    for(var i=3; i<6; i++){
-                        $("#box"+(i-3)).html(group[i]);
+                    for(var fs=3; fs<6; fs++){
+                        $("#box"+(fs-3)).html(group[fs]);
                         }
-                    for(var i=6; i<9; i++){
-                        $("#box"+(i-3)).html(group[i]);
+                    for(var ss=6; ss<9; ss++){
+                        $("#box"+(ss-3)).html(group[ss]);
                         }
-                    for(var i=0; i<3; i++){
-                        $("#box"+(i+6)).html(group[i]);
+                    for(var ts=0; ts<3; ts++){
+                        $("#box"+(ts+6)).html(group[st]);
                         }
                 }else if(random == 3){
-                    for(var i=6; i<9; i++){
-                        $("#box"+(i-6)).html(group[i]);
+                    for(var fs=6; fs<9; fs++){
+                        $("#box"+(fs-6)).html(group[fs]);
                         }
-                    for(var i=0; i<3; i++){
-                        $("#box"+(i+3)).html(group[i]);
+                    for(var ss=0; ss<3; ss++){
+                        $("#box"+(ss+3)).html(group[ss]);
                         }
-                    for(var i=3; i<6; i++){
-                        $("#box"+(i+3)).html(group[i]);
+                    for(var ts=3; ts<6; ts++){
+                        $("#box"+(ts+3)).html(group[ts]);
                         }
                 }else if(random == 4){
-                    for(var i=6; i<9; i++){
-                        $("#box"+(i-6)).html(group[i]);
+                    for(var fs=6; fs<9; fs++){
+                        $("#box"+(fs-6)).html(group[fs]);
                         }
-                    for(var i=3; i<6; i++){
-                        $("#box"+(i)).html(group[i]);
+                    for(var ss=3; ss<6; ss++){
+                        $("#box"+(ss)).html(group[ss]);
                         }
-                    for(var i=0; i<3; i++){
-                        $("#box"+(i+6)).html(group[i]);
+                    for(var ts=0; ts<3; ts++){
+                        $("#box"+(ts+6)).html(group[ts]);
                         }
                     }
 
