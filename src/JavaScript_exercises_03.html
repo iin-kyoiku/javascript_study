@@ -242,7 +242,7 @@
             alert("答え合わせをします");
 
             for(var i=0; i<81; i++){
-                if($("#A"+i).val()==""){
+                if((!$("#A"+i).val())){
                     num = 100;
                 }else if(!($("#A"+i).val()==check[i])){
                     num += 1;
