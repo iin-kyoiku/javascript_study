@@ -157,50 +157,53 @@
                     "<td><input type='text' id='A79' value='5'></td>"+
                     "<td><input type='text' id='A80' value='8'></td>"+
                 "</tr>";
+            var group = [chg1,chg2,chg3,
+                chg4,chg5,chg6,
+                chg7,chg8,chg9];
             var random = Math.floor( Math.random() * 5 );
                 if(random == 0){
-                    for(var i=1; i<10; i++){
-                        $("#box"+i).html(eval("chg"+i));
+                    for(var i=0; i<9; i++){
+                        $("#box"+i).html(group[i]);
                         }
                 }else if(random == 1){
-                    for(var i=4; i<7; i++){
-                        $("#box"+(i-3)).html(eval("chg"+i));
+                    for(var i=3; i<6; i++){
+                        $("#box"+(i-3)).html(group[i]);
                         }
-                    for(var i=1; i<4; i++){
-                        $("#box"+(i+3)).html(eval("chg"+i));
+                    for(var i=0; i<3; i++){
+                        $("#box"+(i+3)).html(group[i]);
                         }
-                    for(var i=7; i<10; i++){
-                        $("#box"+i).html(eval("chg"+i));
+                    for(var i=6; i<9; i++){
+                        $("#box"+i).html(eval(group[i]);
                         }
                 }else if(random == 2){
-                    for(var i=4; i<7; i++){
-                        $("#box"+(i-3)).html(eval("chg"+i));
+                    for(var i=3; i<6; i++){
+                        $("#box"+(i-3)).html(group[i]);
                         }
-                    for(var i=7; i<10; i++){
-                        $("#box"+(i-3)).html(eval("chg"+i));
+                    for(var i=6; i<9; i++){
+                        $("#box"+(i-3)).html(group[i]);
                         }
-                    for(var i=1; i<4; i++){
-                        $("#box"+(i+6)).html(eval("chg"+i));
+                    for(var i=0; i<3; i++){
+                        $("#box"+(i+6)).html(group[i]);
                         }
                 }else if(random == 3){
-                    for(var i=7; i<10; i++){
-                        $("#box"+(i-6)).html(eval("chg"+i));
+                    for(var i=6; i<9; i++){
+                        $("#box"+(i-6)).html(group[i]);
                         }
-                    for(var i=1; i<4; i++){
-                        $("#box"+(i+3)).html(eval("chg"+i));
+                    for(var i=0; i<3; i++){
+                        $("#box"+(i+3)).html(group[i]);
                         }
-                    for(var i=4; i<7; i++){
-                        $("#box"+(i+3)).html(eval("chg"+i));
+                    for(var i=3; i<6; i++){
+                        $("#box"+(i+3)).html(group[i]);
                         }
                 }else if(random == 4){
-                    for(var i=7; i<10; i++){
-                        $("#box"+(i-6)).html(eval("chg"+i));
+                    for(var i=6; i<9; i++){
+                        $("#box"+(i-6)).html(group[i]);
                         }
-                    for(var i=4; i<7; i++){
-                        $("#box"+(i)).html(eval("chg"+i));
+                    for(var i=3; i<6; i++){
+                        $("#box"+(i)).html(group[i]);
                         }
-                    for(var i=1; i<4; i++){
-                        $("#box"+(i+6)).html(eval("chg"+i));
+                    for(var i=0; i<3; i++){
+                        $("#box"+(i+6)).html(group[i]);
                         }
                     }
 
