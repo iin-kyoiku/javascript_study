@@ -216,17 +216,17 @@
                     61,62,63,64,65,66,67,68,69,70,
                     71,72,73,74,75,76,77,78,79,80];
 
-                var a = arr.length;
+                var element = arr.length;
 
                 for(var i=0; i<81; i++){
                     check.push($("#A"+arr[i]).val());
                 }
 
-                while (a) {
-                    var j = Math.floor( Math.random() * a );
-                    var t = arr[--a];
-                    arr[a] = arr[j];
-                    arr[j] = t;
+                while (element) {
+                    var changeElement = Math.floor( Math.random() * element );
+                    var temporarily = arr[--element];
+                    arr[element] = arr[changeElement];
+                    arr[changeElement] = temporarily;
                 }
 
                 for(var i=0; i<81; i++){
