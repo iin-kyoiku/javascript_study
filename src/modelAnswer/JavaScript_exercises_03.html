@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript課題3</title>
+    <link href="../../lib/bootstrap-4.1.2/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      * {
+        font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro',
+          'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック',
+          'MS PGothic', sans-serif;
+        letter-spacing: .08em;
+      }
+      .errorMsg {
+        padding-left: 10px;
+        font-size: 12px;
+        color: red;
+      }
+      .jumbotron {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .jumbotron div {
+        font-size: 11px;
+      }
+      input[type=text] {
+        width: 18px;
+        height: 20px;
+        text-align: right;
+      }
+      select {
+        width: 25px;
+        padding-left: 4px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      ::-ms-expand {
+        display: none;
+      }
+    </style>
+    <script src="../../lib/jquery.min.js"></script>
+    <script src="../../lib/bootstrap-4.1.2/js/bootstrap.min.js"></script>
+    <script>
+
+      var STORAGE_KEY = "sudokuAnswer";
+      var CRYPT_KEY = Math.floor( Math.random() * 100) + 1;
+
+      $(function(){
+
+    	  // セレクトボックス作成.
+        var options = $('table[id^=box] tr td').append('<select></select>').children();
+        $.each( [ "", 1, 2, 3, 4, 5, 6, 7, 8, 9 ], function( idx, val ){
+          options.append( '<option>' + val + '</option>' );
+        } );
+
+      });
+
+      var setQuestions = function(){
+
+        var elements = {
+          "A1":0, "A2":0, "A3":0, "A4":0, "A5":0, "A6":0, "A7":0, "A8": A8, "A9":0,
+          "B1":0, "B2":0, "B3":0, "B4":0, "B5":0, "B6":0, "B7":0, "B8": A8, "B9":0,
+          "C1":0, "C2":0, "C3":0, "C4":0, "C5":0, "C6":0, "C7":0, "C8": A8, "C9":0,
+          "D1":0, "D2":0, "D3":0, "D4":0, "D5":0, "D6":0, "D7":0, "D8": A8, "D9":0,
+          "E1":0, "E2":0, "E3":0, "E4":0, "E5":0, "E6":0, "E7":0, "E8": A8, "E9":0,
+          "F1":0, "F2":0, "F3":0, "F4":0, "F5":0, "F6":0, "F7":0, "F8": A8, "F9":0,
+          "G1":0, "G2":0, "G3":0, "G4":0, "G5":0, "G6":0, "G7":0, "G8": A8, "G9":0,
+          "H1":0, "H2":0, "H3":0, "H4":0, "H5":0, "H6":0, "H7":0, "H8": A8, "H9":0,
+          "I1":0, "I2":0, "I3":0, "I4":0, "I5":0, "I6":0, "I7":0, "I8": A8, "I9":0
+        }
+
+        // elements を初期化します。
+        $.each( elements, function( idx, val ){
+          elements[ idx ] = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+        });
+
+        // elements をグルグルします.
+        $.each( elements, function( idx, val ){
+          // 要素0なら、次へ
+          if ( ! val.length ){
+            return true;
+          }
+          // element の ランダムに指定.
+          elements[ idx ] = Math.floor( Math.random() * 9) + 1;
+        });
+
+        // TODO
+        // ・ヒント個数は、20～38個が妥当。
+
+        // 解答をlocalStorageに保存.
+        var answer = JSON.stringify( elements ) ,cryptAnswer = "";
+        for (var i in answer){
+      	  cryptAnswer += String.fromCharCode( answer[i].charCodeAt(0) + CRYPT_KEY );
+        }
+        localStorage.setItem( STORAGE_KEY, cryptAnswer );
+
+        // DOMに設定.
+        $.each( elements, function( idx, val ){
+          $( '#' + idx + " select" ).val( val );
+        });
+      }
+
+      var displayAnswer = function(){
+
+    	  // 復号化.
+    	  var answer ="", cryptAnswer = localStorage.getItem( STORAGE_KEY );
+        for (var i in cryptAnswer){
+          answer += String.fromCharCode( cryptAnswer[i].charCodeAt(0) - CRYPT_KEY );
+        }
+
+    	  // localStorageから解答取得.
+    	  var elements = JSON.parse( answer );
+
+        // DOMに設定.
+        $.each( elements, function( idx, val ){
+          $( '#' + idx + " select" ).val( val );
+        });
+
+      }
+
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">JavaScript課題3</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">会員登録</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">会員検索</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          test-user さんでログイン中
+        </span>
+      </div>
+    </nav>
+    <div class="jumbotron">
+      <p>以下の問題に沿ってJavaScript (JQuery) で実装しなさい。</p>
+      <div>■問題</div>
+      <div>・数独の問題をHTMLとJavaScriptで実装する。</div>
+      <div>　ルールは以下のWiki参照</div>
+      <div>　https://ja.wikipedia.org/wiki/%E6%95%B0%E7%8B%AC</div>
+    </div>
+    <div class="container">
+      <br />
+        <table border="1">
+          <tr>
+            <td>
+              <table id="box0">
+                <tr>
+                  <td id="A1"></td>
+                  <td id="A2"></td>
+                  <td id="A3"></td>
+                </tr>
+                <tr>
+                  <td id="B1"></td>
+                  <td id="B2"></td>
+                  <td id="B3"></td>
+                </tr>
+                <tr>
+                  <td id="C1"></td>
+                  <td id="C2"></td>
+                  <td id="C3"></td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table id="box1">
+                <tr>
+                  <td id="A4"></td>
+                  <td id="A5"></td>
+                  <td id="A6"></td>
+                </tr>
+                <tr>
+                  <td id="B4"></td>
+                  <td id="B5"></td>
+                  <td id="B6"></td>
+                </tr>
+                <tr>
+                  <td id="C4"></td>
+                  <td id="C5"></td>
+                  <td id="C6"></td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table id="box2">
+                <tr>
+                  <td id="A7"></td>
+                  <td id="A8"></td>
+                  <td id="A9"></td>
+                </tr>
+                <tr>
+                  <td id="B7"></td>
+                  <td id="B8"></td>
+                  <td id="B9"></td>
+                </tr>
+                <tr>
+                  <td id="C7"></td>
+                  <td id="C8"></td>
+                  <td id="C9"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table id="box3">
+                <tr>
+                  <td id="D1"></td>
+                  <td id="D2"></td>
+                  <td id="D3"></td>
+                </tr>
+                <tr>
+                  <td id="E1"></td>
+                  <td id="E2"></td>
+                  <td id="E3"></td>
+                </tr>
+                <tr>
+                  <td id="F1"></td>
+                  <td id="F2"></td>
+                  <td id="F3"></td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table id="box4">
+                <tr>
+                  <td id="D4"></td>
+                  <td id="D5"></td>
+                  <td id="D6"></td>
+                </tr>
+                <tr>
+                  <td id="E4"></td>
+                  <td id="E5"></td>
+                  <td id="E6"></td>
+                </tr>
+                <tr>
+                  <td id="F4"></td>
+                  <td id="F5"></td>
+                  <td id="F6"></td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table id="box5">
+                <tr>
+                  <td id="D7"></td>
+                  <td id="D8"></td>
+                  <td id="D9"></td>
+                </tr>
+                <tr>
+                  <td id="E7"></td>
+                  <td id="E8"></td>
+                  <td id="E9"></td>
+                </tr>
+                <tr>
+                  <td id="F7"></td>
+                  <td id="F8"></td>
+                  <td id="F9"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table id="box6">
+                <tr>
+                  <td id="G1"></td>
+                  <td id="G2"></td>
+                  <td id="G3"></td>
+                </tr>
+                <tr>
+                  <td id="H1"></td>
+                  <td id="H2"></td>
+                  <td id="H3"></td>
+                </tr>
+                <tr>
+                  <td id="I1"></td>
+                  <td id="I2"></td>
+                  <td id="I3"></td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table id="box7">
+                <tr>
+                  <td id="G4"></td>
+                  <td id="G5"></td>
+                  <td id="G6"></td>
+                </tr>
+                <tr>
+                  <td id="H4"></td>
+                  <td id="H5"></td>
+                  <td id="H6"></td>
+                </tr>
+                <tr>
+                  <td id="I4"></td>
+                  <td id="I5"></td>
+                  <td id="I6"></td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table id="box8">
+                <tr>
+                  <td id="G7"></td>
+                  <td id="G8"></td>
+                  <td id="G9"></td>
+                </tr>
+                <tr>
+                  <td id="H7"></td>
+                  <td id="H8"></td>
+                  <td id="H9"></td>
+                </tr>
+                <tr>
+                  <td id="I7"></td>
+                  <td id="I8"></td>
+                  <td id="I9"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br />
+        <p>
+          <button type="button" id="set" class="btn btn-primary" onclick="setQuestions()">出題</button>
+          <button type="button" id="answer" class="btn btn-success" onclick="displayAnswer()">答え合わせ</button>
+        </p>
+      <br />
+    </div>
+  </body>
+</html>
